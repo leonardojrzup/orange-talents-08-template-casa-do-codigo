@@ -1,5 +1,7 @@
 package br.com.leonardo.casadocodigo.modelo;
 
+import br.com.leonardo.casadocodigo.dto.AutorDTO;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +9,8 @@ import javax.persistence.Id;
 import java.time.LocalDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+
+//Classe que representa o autor com os metodos que são de resposabilidade dela
 
 @Entity
 public class Autor {
@@ -27,6 +31,11 @@ public class Autor {
     }
 
     public Autor() {
+    }
+
+    //Converte um autor 'Entidade' para um autorDTO no qual iremos apresentar nas listagens
+    public AutorDTO converterParaDTO(){
+            return new AutorDTO(nome,email, descricao);
     }
 
     public Long getId() {
