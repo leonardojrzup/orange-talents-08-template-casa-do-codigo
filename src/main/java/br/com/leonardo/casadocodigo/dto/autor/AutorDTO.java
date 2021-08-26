@@ -1,4 +1,4 @@
-package br.com.leonardo.casadocodigo.dto;
+package br.com.leonardo.casadocodigo.dto.autor;
 
 import br.com.leonardo.casadocodigo.modelo.Autor;
 
@@ -19,9 +19,6 @@ public class AutorDTO {
     public static AutorDTO converterParaDTO(Autor autor) {
         return new AutorDTO(autor.getNome(), autor.getEmail(), autor.getDescricao());
     }
-
-
-
     public String getNome() {
         return nome;
     }

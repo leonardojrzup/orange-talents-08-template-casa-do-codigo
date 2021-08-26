@@ -1,11 +1,9 @@
 package br.com.leonardo.casadocodigo.controle;
 
 
-import antlr.ASTNULLType;
-import br.com.leonardo.casadocodigo.dto.AutorDTO;
-import br.com.leonardo.casadocodigo.dto.AutorForm;
+import br.com.leonardo.casadocodigo.dto.autor.AutorDTO;
+import br.com.leonardo.casadocodigo.dto.autor.AutorForm;
 import br.com.leonardo.casadocodigo.modelo.Autor;
-import br.com.leonardo.casadocodigo.repositorio.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

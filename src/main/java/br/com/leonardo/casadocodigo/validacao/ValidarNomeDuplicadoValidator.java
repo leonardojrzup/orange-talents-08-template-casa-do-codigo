@@ -1,35 +1,28 @@
-package br.com.leonardo.casadocodigo.validação;
+package br.com.leonardo.casadocodigo.validacao;
 
-import br.com.leonardo.casadocodigo.repositorio.AutorRepository;
-import br.com.leonardo.casadocodigo.validação.ValidarEmailDuplicado;
+import br.com.leonardo.casadocodigo.repositorio.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-
-//Classe que implementa a validação se o email ja existe no banco de dados
-
-public class ValidarEmailDuplicadoValidator implements ConstraintValidator<ValidarEmailDuplicado, String> {
+public class ValidarNomeDuplicadoValidator implements ConstraintValidator<ValidarNomeDuplicado,String> {
     private String email;
     @Autowired
-    AutorRepository autorRepository;
-
+    CategoriaRepository categoriaRepository;
 
     //metodo de inicialição da anotação
     @Override
-    public void initialize(ValidarEmailDuplicado constraintAnnotation) {
+    public void initialize(ValidarNomeDuplicado constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
-
 
     //Validação onde caso o email seja encontrado no banco de dados vai retornar o erro, não foi validado se a string é nula pois a validação da fomatação do email realiza esse processo
     @Override
     public boolean isValid(String email, ConstraintValidatorContext context) {
 
-
         //essa validação pode ser realizada atravpes do EntityManager, porém devido a facilidade foi usada através de um repository
-        if(autorRepository.findByEmail(email) != null) {
+        if(categoriaRepository.findByNome(email) != null) {
             return false;
         } else {
             return true;
@@ -37,5 +30,6 @@ public class ValidarEmailDuplicadoValidator implements ConstraintValidator<Valid
 
     }
 
-}
 
+
+}

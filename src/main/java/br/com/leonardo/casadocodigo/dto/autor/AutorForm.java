@@ -1,7 +1,7 @@
-package br.com.leonardo.casadocodigo.dto;
+package br.com.leonardo.casadocodigo.dto.autor;
 
-import br.com.leonardo.casadocodigo.validação.ValidarEmailDuplicado;
 import br.com.leonardo.casadocodigo.modelo.Autor;
+import br.com.leonardo.casadocodigo.validacao.ValidarEmailDuplicado;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -11,9 +11,9 @@ import javax.validation.constraints.Size;
 //Classe que representa o autor que será enviado através de requisições.
 public class AutorForm {
 
-    @NotBlank(message = "email")
-    @Email
-    @ValidarEmailDuplicado
+    @NotBlank(message = "Email")
+    @Email(message = "Email")
+    @ValidarEmailDuplicado(message = "Email")
     private String email;
 
     @NotBlank(message = "Nome")

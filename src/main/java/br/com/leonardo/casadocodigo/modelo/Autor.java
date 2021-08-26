@@ -1,14 +1,12 @@
 package br.com.leonardo.casadocodigo.modelo;
 
-import br.com.leonardo.casadocodigo.dto.AutorDTO;
+import br.com.leonardo.casadocodigo.dto.autor.AutorDTO;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
 
 //Classe que representa o autor com os metodos que são de resposabilidade dela
 
