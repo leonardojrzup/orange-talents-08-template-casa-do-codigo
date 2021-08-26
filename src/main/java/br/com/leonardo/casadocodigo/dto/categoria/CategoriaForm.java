@@ -2,14 +2,13 @@ package br.com.leonardo.casadocodigo.dto.categoria;
 
 import br.com.leonardo.casadocodigo.modelo.Categoria;
 import br.com.leonardo.casadocodigo.validacao.ValidarNomeDuplicado;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 
 public class CategoriaForm {
 
     @NotBlank(message = "Nome")
-    @ValidarNomeDuplicado(message = "Email ")
+    @ValidarNomeDuplicado(message = "Nome ")
     private String nome;
 
     public CategoriaForm(String nome) {

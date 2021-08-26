@@ -23,24 +23,13 @@ import java.util.stream.Collectors;
 public class CategoriaControlador {
 
     @Autowired
-    CategoriaRepository categoriaRepository;
-    @Autowired
     EntityManager entityManager;
-
-
-    @GetMapping
-
-    public List<Categoria> listarTodos() {
-      List <Categoria> resultado = (List<Categoria>) categoriaRepository.findAll();
-        return resultado;
-    }
 
 
     @PostMapping
     @Transactional
     public ResponseEntity<CategoriaDTO> Salvar (@RequestBody @Valid CategoriaForm form){
         Categoria categoriaSalva = form.converterParaEntidade();
-        System.out.println(form.getNome());
         entityManager.persist(categoriaSalva);
         return ResponseEntity.status(HttpStatus.OK).body(categoriaSalva.converterParaDTO());
     }

@@ -22,14 +22,6 @@ public class AutorControlador {
     @Autowired
     EntityManager entityManager;
 
-//Metodo de teste para buscar todos os autores no banco de dados utilizando um metodo estatico da classe DTO para converter a lista de Autores em Autores DTO
-    @GetMapping
-    public List<AutorDTO> listarTodos() {
-    List<Autor> resultado = entityManager.createQuery("select a from Autor a ").getResultList();
-    return resultado.stream().map(autor -> AutorDTO.converterParaDTO(autor))
-                .collect(Collectors.toList());
-    }
-
     //Salva o Autor no banco de dados e retorna um autorDTO do autor que foi cadastrado, juntamente com o status 200 (OK)
     @PostMapping
     @Transactional
