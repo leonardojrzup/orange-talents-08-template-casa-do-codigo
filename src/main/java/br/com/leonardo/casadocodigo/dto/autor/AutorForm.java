@@ -5,6 +5,7 @@ import br.com.leonardo.casadocodigo.modelo.Categoria;
 import br.com.leonardo.casadocodigo.validacao.ValidarEmailDuplicado;
 import br.com.leonardo.casadocodigo.validacao.isUnique;
 
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -15,8 +16,9 @@ public class AutorForm {
 
     @NotBlank(message = "Email")
     @Email(message = "Email")
-    @isUnique(fieldName = "email", domainClass = Autor.class)
+    @isUnique(fieldName = "email", domainClass = Autor.class, message = "Email")
     private String email;
+
 
     @NotBlank(message = "Nome")
     private String nome;

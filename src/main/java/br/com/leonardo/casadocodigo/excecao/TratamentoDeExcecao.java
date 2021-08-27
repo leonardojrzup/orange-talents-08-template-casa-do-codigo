@@ -47,14 +47,11 @@ public class TratamentoDeExcecao extends ResponseEntityExceptionHandler{
 
             return fieldError.getDefaultMessage().concat(" deve conter um formato de email válido");
         }
-        if(fieldError.getCode().equals("ValidarEmailDuplicado")) {
+        if(fieldError.getCode().equals("isUnique")) {
 
             return fieldError.getDefaultMessage().concat(" já cadastrado no banco de dados");
         }
-        if(fieldError.getCode().equals("ValidarNomeDuplicado")) {
 
-            return fieldError.getDefaultMessage().concat(" já cadastrado no banco de dados");
-        }
         //System.out.println(fieldError.getCode());//fins de debug para confirmar o codigo dos erros que estão sendo retornados
         return fieldError.toString();
     }

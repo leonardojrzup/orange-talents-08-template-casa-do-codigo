@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 public class CategoriaForm {
 
     @NotBlank(message = "Nome")
-    @isUnique(fieldName = "nome", domainClass = Categoria.class)
+    @isUnique(fieldName = "nome", domainClass = Categoria.class, message = "Nome da categoria")
     private String nome;
 
     public CategoriaForm(String nome) {
