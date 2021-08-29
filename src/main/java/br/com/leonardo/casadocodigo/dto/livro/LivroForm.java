@@ -21,7 +21,7 @@ public class LivroForm {
     @isUnique(fieldName = "titulo", domainClass = Livro.class, message = "Titulo")
     private String titulo;
     @NotNull
-    @Length(max = 500)
+    @Length(max = 500,message = "Resumo deve conter no máximo 500 Caracteres")
     private String resumo;
     @NotNull
     private String sumario;
