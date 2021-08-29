@@ -1,5 +1,7 @@
 package br.com.leonardo.casadocodigo.dto.livro;
 
+import br.com.leonardo.casadocodigo.dto.autor.AutorDTO;
+import br.com.leonardo.casadocodigo.dto.categoria.CategoriaDTO;
 import br.com.leonardo.casadocodigo.modelo.Autor;
 import br.com.leonardo.casadocodigo.modelo.Categoria;
 import br.com.leonardo.casadocodigo.modelo.Livro;
@@ -25,10 +27,10 @@ public class LivroDTO {
     private Integer numeroPaginas;
     private String isbn;
     private LocalDateTime dataPublicacao;
-    private Categoria categoria;
-    private Autor autor;
+    private CategoriaDTO categoria;
+    private AutorDTO autor;
 
-    public LivroDTO(String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDateTime dataPublicacao, Categoria categoria, Autor autor) {
+    public LivroDTO(String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDateTime dataPublicacao, CategoriaDTO categoria, AutorDTO autor) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.sumario = sumario;
@@ -38,6 +40,12 @@ public class LivroDTO {
         this.dataPublicacao = dataPublicacao;
         this.categoria = categoria;
         this.autor = autor;
+    }
+
+    public static LivroDTO toDTO(Livro produto) {
+
+    return new LivroDTO(produto.getTitulo(), produto.getResumo(), produto.getSumario(), produto.getPreco(), produto.getNumeroPaginas(), produto.getIsbn(),produto.getDataPublicacao(),
+            produto.getCategoria().converterParaDTO(),produto.getAutor().converterParaDTO());
     }
 
     public String getTitulo() {
@@ -68,11 +76,11 @@ public class LivroDTO {
         return dataPublicacao;
     }
 
-    public Categoria getCategoria() {
+    public CategoriaDTO getCategoria() {
         return categoria;
     }
 
-    public Autor getAutor() {
+    public AutorDTO getAutor() {
         return autor;
     }
 }
