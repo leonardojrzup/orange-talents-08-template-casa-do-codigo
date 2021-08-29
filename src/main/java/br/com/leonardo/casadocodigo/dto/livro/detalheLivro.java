@@ -1,19 +1,14 @@
-package br.com.leonardo.casadocodigo.modelo;
+package br.com.leonardo.casadocodigo.dto.livro;
 
-import br.com.leonardo.casadocodigo.validacao.isUnique;
-import org.hibernate.validator.constraints.Length;
+import br.com.leonardo.casadocodigo.dto.autor.AutorDTO;
+import br.com.leonardo.casadocodigo.dto.categoria.CategoriaDTO;
+import br.com.leonardo.casadocodigo.modelo.Livro;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
-public class Livro {
+public class detalheLivro {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String titulo;
     private String resumo;
     private String sumario;
@@ -21,17 +16,10 @@ public class Livro {
     private Integer numeroPaginas;
     private String isbn;
     private LocalDateTime dataPublicacao;
-    @ManyToOne
-    private Categoria categoria;
-    @ManyToOne
-    private Autor autor;
+    private CategoriaDTO categoria;
+    private AutorDTO autor;
 
-    @Deprecated
-    public Livro(){
-
-    }
-
-    public Livro(String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDateTime dataPublicacao, Categoria categoria, Autor autor) {
+    public detalheLivro(String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDateTime dataPublicacao, CategoriaDTO categoria, AutorDTO autor) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.sumario = sumario;
@@ -43,9 +31,10 @@ public class Livro {
         this.autor = autor;
     }
 
+    public static detalheLivro toDTO(Livro livro) {
 
-    public Long getId() {
-        return id;
+    return new detalheLivro(livro.getTitulo(), livro.getResumo(), livro.getSumario(), livro.getPreco(), livro.getNumeroPaginas(), livro.getIsbn(),livro.getDataPublicacao(),
+            livro.getCategoria().converterParaDTO(),livro.getAutor().converterParaDTO());
     }
 
     public String getTitulo() {
@@ -76,11 +65,11 @@ public class Livro {
         return dataPublicacao;
     }
 
-    public Categoria getCategoria() {
+    public CategoriaDTO getCategoria() {
         return categoria;
     }
 
-    public Autor getAutor() {
+    public AutorDTO getAutor() {
         return autor;
     }
 }
