@@ -29,6 +29,7 @@ public class LivroForm {
     private BigDecimal preco;
     @Min(value = 100, message = "O numero de páginas deve ser no minimo 20")
     private Integer numeroPaginas;
+    @isUnique(fieldName = "isbn", domainClass = Livro.class, message = "ISBN")
     @NotNull
     private String isbn;
     @Future
