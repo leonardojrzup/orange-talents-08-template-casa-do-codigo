@@ -7,7 +7,7 @@ import br.com.leonardo.casadocodigo.modelo.Livro;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class detalheLivro {
+public class LivroDetalhe {
 
     private String titulo;
     private String resumo;
@@ -19,7 +19,7 @@ public class detalheLivro {
     private CategoriaDTO categoria;
     private AutorDTO autor;
 
-    public detalheLivro(String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDateTime dataPublicacao, CategoriaDTO categoria, AutorDTO autor) {
+    public LivroDetalhe(String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDateTime dataPublicacao, CategoriaDTO categoria, AutorDTO autor) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.sumario = sumario;
@@ -31,9 +31,9 @@ public class detalheLivro {
         this.autor = autor;
     }
 
-    public static detalheLivro toDTO(Livro livro) {
+    public static LivroDetalhe toDTO(Livro livro) {
 
-    return new detalheLivro(livro.getTitulo(), livro.getResumo(), livro.getSumario(), livro.getPreco(), livro.getNumeroPaginas(), livro.getIsbn(),livro.getDataPublicacao(),
+    return new LivroDetalhe(livro.getTitulo(), livro.getResumo(), livro.getSumario(), livro.getPreco(), livro.getNumeroPaginas(), livro.getIsbn(),livro.getDataPublicacao(),
             livro.getCategoria().converterParaDTO(),livro.getAutor().converterParaDTO());
     }
 
