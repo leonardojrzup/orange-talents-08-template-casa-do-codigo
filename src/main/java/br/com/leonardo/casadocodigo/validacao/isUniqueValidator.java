@@ -13,6 +13,7 @@ public class isUniqueValidator implements ConstraintValidator <isUnique, Object>
     private String campo;
     private Class<?> classe;
 
+    @Autowired
     @PersistenceContext
     EntityManager entityManager;
 

@@ -51,6 +51,16 @@ public class TratamentoDeExcecao extends ResponseEntityExceptionHandler{
 
             return fieldError.getDefaultMessage().concat(" já cadastrado no banco de dados");
         }
+        if(fieldError.getCode().equals("Future")) {
+            return fieldError.getDefaultMessage();
+        }
+        if(fieldError.getCode().equals("Min")) {
+            return fieldError.getDefaultMessage();
+        }
+
+
+
+
 
         //System.out.println(fieldError.getCode());//fins de debug para confirmar o codigo dos erros que estão sendo retornados
         return fieldError.toString();

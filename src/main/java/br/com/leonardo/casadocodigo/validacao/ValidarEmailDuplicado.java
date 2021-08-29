@@ -1,6 +1,5 @@
 package br.com.leonardo.casadocodigo.validacao;
 
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Retention;
@@ -25,6 +24,4 @@ public @interface ValidarEmailDuplicado {
 
     //valor padrão caso não for passado nenhum valor na variavel
     String value() default "";
-
-
 }
