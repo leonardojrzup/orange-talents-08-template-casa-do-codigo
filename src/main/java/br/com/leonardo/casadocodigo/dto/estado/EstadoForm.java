@@ -32,10 +32,8 @@ public class EstadoForm {
     }
 
     public Estado toModel(EntityManager entityManager) {
-
         @NotNull Pais pais = entityManager.find(Pais.class, idPais);
         Assert.state(Objects.nonNull(pais),"Pais não existente no banco de dados, por gentileza, salvar o pais antes de salvar Estado. ID do pais:"+idPais);
-
         return new Estado(nome, entityManager.find(Pais.class, idPais));
     }
 }

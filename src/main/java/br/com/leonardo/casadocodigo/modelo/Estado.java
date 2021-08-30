@@ -28,15 +28,13 @@ public class Estado {
         this.nome = nome;
         this.pais = pais;
     }
-    public void validarNomeDuplicadoPais(EntityManager entityManager) {
 
+    //Validar se o Estado já está inserido para o pais
+    public void validarNomeDuplicadoPais(EntityManager entityManager) {
         Query query = entityManager.createQuery("SELECT e FROM "+ this.getClass().getName() +" e WHERE pais_id "+"= :value "+ "and e.nome " + "= :value2");
         query.setParameter("value",pais.getId());
         query.setParameter("value2",nome);
         List<?> list = query.getResultList();
         Assert.isTrue(list.isEmpty(), "Você ja possui um Estado com esse nome para esse Pais");
     }
-
-
-
 }

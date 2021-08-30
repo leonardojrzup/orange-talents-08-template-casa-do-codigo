@@ -19,15 +19,13 @@ public class Pais {
     public Pais() {
     }
 
-
-    public Long getId() {
-        return id;
-    }
-
     public Pais(String nome) {
         this.nome = nome;
     }
-
+    
+    public Long getId() {
+        return id;
+    }
     public String getNome() {
         return nome;
     }

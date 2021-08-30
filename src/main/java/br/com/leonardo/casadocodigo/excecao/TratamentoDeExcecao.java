@@ -29,7 +29,6 @@ public class TratamentoDeExcecao extends ResponseEntityExceptionHandler{
 
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<Object> handleRegraNegocioException(IllegalStateException ex, WebRequest request){
-
         String msgUsuario = ex.getMessage();
         String msgDesenvolvedor = ex.getMessage();
         List<Erro> erros = Arrays.asList(new Erro(msgUsuario, msgDesenvolvedor));
@@ -38,7 +37,6 @@ public class TratamentoDeExcecao extends ResponseEntityExceptionHandler{
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Object> handleRegraNegocioException(IllegalArgumentException ex, WebRequest request){
-
         String msgUsuario = ex.getMessage();
         String msgDesenvolvedor = ex.getMessage();
         List<Erro> erros = Arrays.asList(new Erro(msgUsuario, msgDesenvolvedor));
