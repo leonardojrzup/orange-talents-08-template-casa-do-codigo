@@ -23,7 +23,7 @@ public class EstadoController {
         @Transactional
         public void salvar(@RequestBody @Valid EstadoForm form) {
             Estado novoEstado = form.toModel(manager);
+            novoEstado.validarNomeDuplicadoPais(manager);
             manager.persist(novoEstado);
-
         }
 }

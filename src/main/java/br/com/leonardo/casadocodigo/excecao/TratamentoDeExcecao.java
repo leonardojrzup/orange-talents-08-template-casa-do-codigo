@@ -17,7 +17,6 @@ import java.util.List;
 @RestControllerAdvice
 public class TratamentoDeExcecao extends ResponseEntityExceptionHandler{
 
-
     //Rescrevo o parametro o método retornando adicionalmente retornando uma lista com os erros indicando uma mensagem para o usuario e uma mensagem para o desenvolvedor
     //Ajustar conforme necessidade, pois trata somente erros de argumentos de metodos, exemplo, os parametros do metodo POST de salvar algum usuario
 
@@ -27,8 +26,7 @@ public class TratamentoDeExcecao extends ResponseEntityExceptionHandler{
         List<Erro> erros = gerarListDeErros(ex.getBindingResult());
         return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);//Altera o handleExceptionInternal, pois o corpo pode ser nulo (Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
     }
-
-
+    
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<Object> handleRegraNegocioException(IllegalStateException ex, WebRequest request){
 
@@ -38,16 +36,14 @@ public class TratamentoDeExcecao extends ResponseEntityExceptionHandler{
         return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST,request);
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Object> handleRegraNegocioException(IllegalArgumentException ex, WebRequest request){
 
-
-
-
-
-
-
-
-
-
+        String msgUsuario = ex.getMessage();
+        String msgDesenvolvedor = ex.getMessage();
+        List<Erro> erros = Arrays.asList(new Erro(msgUsuario, msgDesenvolvedor));
+        return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST,request);
+    }
 
     //Pega uma lista dos erros que estão sendo apresentados
     private List<Erro> gerarListDeErros(BindingResult bindingResult) { // BindingResult é Basicamente, uma interface que determina como o objeto que armazena o resultado da validação deve armazenar e recuperar o resultado da validação (erros, tentativa de vinculação a campos não permitidos, etc.)
