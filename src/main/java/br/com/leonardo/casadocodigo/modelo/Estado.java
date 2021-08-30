@@ -29,7 +29,7 @@ public class Estado {
         this.pais = pais;
     }
 
-    //Validar se o Estado já está inserido para o pais
+    //Validar se o Estado já está inserido para o pais.
     public void validarNomeDuplicadoPais(EntityManager entityManager) {
         Query query = entityManager.createQuery("SELECT e FROM "+ this.getClass().getName() +" e WHERE pais_id "+"= :value "+ "and e.nome " + "= :value2");
         query.setParameter("value",pais.getId());
