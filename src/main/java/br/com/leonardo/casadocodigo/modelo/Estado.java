@@ -37,4 +37,22 @@ public class Estado {
         List<?> list = query.getResultList();
         Assert.isTrue(list.isEmpty(), "Você ja possui um Estado com esse nome para esse Pais");
     }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Pais getPais() {
+        return pais;
+    }
+
+    public boolean pertenceAPais(Pais pais) {
+        return this.pais.equals(pais);
+    }
+
 }

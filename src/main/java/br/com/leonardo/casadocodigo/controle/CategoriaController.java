@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Categoria")
-public class CategoriaControlador {
+public class CategoriaController {
 
     @Autowired
     EntityManager entityManager;

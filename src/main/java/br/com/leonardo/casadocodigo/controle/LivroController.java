@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/livros")
-public class LivroControlador {
+public class LivroController {
 
     @Autowired
     LivroRepository livroRepository;

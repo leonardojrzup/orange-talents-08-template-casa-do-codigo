@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Autor")
-public class AutorControlador {
+public class AutorController {
 
     @Autowired
     EntityManager entityManager;

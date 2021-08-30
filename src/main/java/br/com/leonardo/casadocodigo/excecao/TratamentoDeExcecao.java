@@ -36,7 +36,7 @@ public class TratamentoDeExcecao extends ResponseEntityExceptionHandler{
         return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST,request);
     }
     //TRatar IllegalArgumentException
-    @ExceptionHandler(IllegalArgumentException.class)
+   // @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Object> handleRegraNegocioException(IllegalArgumentException ex, WebRequest request){
         String msgUsuario = ex.getMessage();
         String msgDesenvolvedor = ex.getMessage();
@@ -77,6 +77,9 @@ public class TratamentoDeExcecao extends ResponseEntityExceptionHandler{
             return fieldError.getDefaultMessage();
         }
         if(fieldError.getCode().equals("Min")) {
+            return fieldError.getDefaultMessage();
+        }
+        if(fieldError.getCode().equals("Lenght")) {
             return fieldError.getDefaultMessage();
         }
         if(fieldError.getCode().equals("Lenght")) {
