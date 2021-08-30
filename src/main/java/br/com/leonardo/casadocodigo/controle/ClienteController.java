@@ -24,9 +24,9 @@ public class ClienteController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Cliente> Salvar(@RequestBody @Valid ClienteForm form) {
+    public ResponseEntity<Long> Salvar(@RequestBody @Valid ClienteForm form) {
         Cliente clienteSalvo = form.toModel(entityManager);
         entityManager.persist(clienteSalvo);
-        return ResponseEntity.status(HttpStatus.OK).body(clienteSalvo);
+        return ResponseEntity.status(HttpStatus.OK).body(clienteSalvo.getId());
     }
 }

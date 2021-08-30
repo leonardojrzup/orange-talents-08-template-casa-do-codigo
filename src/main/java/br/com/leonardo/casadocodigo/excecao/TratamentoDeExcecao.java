@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +29,18 @@ public class TratamentoDeExcecao extends ResponseEntityExceptionHandler{
         return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);//Altera o handleExceptionInternal, pois o corpo pode ser nulo (Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
     }
 
-    //Tratat IllegalStateException
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<Object> handleContraintViolation(ConstraintViolationException ex, WebRequest request){
+        String msgUsuario = ex.getMessage();
+        String msgDesenvolvedor = ex.getMessage();
+        List<Erro> erros = Arrays.asList(new Erro(msgUsuario, msgDesenvolvedor));
+        return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST,request);
+    }
+
+
+
+    //Tratar IllegalStateException
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<Object> handleRegraNegocioException(IllegalStateException ex, WebRequest request){
         String msgUsuario = ex.getMessage();
@@ -35,8 +48,8 @@ public class TratamentoDeExcecao extends ResponseEntityExceptionHandler{
         List<Erro> erros = Arrays.asList(new Erro(msgUsuario, msgDesenvolvedor));
         return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST,request);
     }
-    //TRatar IllegalArgumentException
-   // @ExceptionHandler(IllegalArgumentException.class)
+    //Tratar IllegalArgumentException
+    @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Object> handleRegraNegocioException(IllegalArgumentException ex, WebRequest request){
         String msgUsuario = ex.getMessage();
         String msgDesenvolvedor = ex.getMessage();
@@ -82,7 +95,7 @@ public class TratamentoDeExcecao extends ResponseEntityExceptionHandler{
         if(fieldError.getCode().equals("Lenght")) {
             return fieldError.getDefaultMessage();
         }
-        if(fieldError.getCode().equals("Lenght")) {
+        if(fieldError.getCode().equals("Documento")) {
             return fieldError.getDefaultMessage();
         }
 

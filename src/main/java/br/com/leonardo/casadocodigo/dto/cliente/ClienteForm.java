@@ -69,28 +69,30 @@ public class ClienteForm {
 
 
     public Cliente toModel(EntityManager entityManager) {
-
         if (temEstado(entityManager)){
-                @NotNull Pais pais = entityManager.find(Pais.class, idPais);
-                @NotNull Estado estado = entityManager.find(Estado.class, idEstado);
+            if(Objects.isNull(idEstado)){
+                Assert.state(Objects.nonNull(idEstado),"Estado é obrigatorio para este pais");
+            }
 
-                Assert.state(Objects.nonNull(pais),"Pais não existente no banco de dados, por gentileza, salvar a categoria antes de salvar o livro. ID da categoria:"+idPais);
-                Assert.state(Objects.nonNull(estado),"Estado não existente no banco de dados, por gentileza, salvar o autor antes de salvar o livro. ID do autor:"+idEstado);
+            Pais pais = entityManager.find(Pais.class, idPais);
+            Estado estado = entityManager.find(Estado.class, idEstado);
+            Assert.state(Objects.isNull(idEstado),"Estádo inválido"); // Em caso de nullpointer
 
-                return new Cliente(email,nome, sobrenome, documento,endereco, complemento,
-                        telefone, cep, pais,estado);
+            if (!estado.pertenceAPais(pais)) {
+                Assert.state(Objects.nonNull(idEstado),"Estado não pertence a Essa pais");
             }else{
-
-                         @NotNull Pais pais = entityManager.find(Pais.class, idPais);
-                         Assert.state(Objects.nonNull(pais),"Pais não existente no banco de dados, por gentileza, salvar a categoria antes de salvar o livro. ID da categoria:"+idPais);
-
-            return new Cliente(email,nome, sobrenome, documento,endereco, complemento,
-                    telefone, cep, pais);
+                return new Cliente(email,nome,sobrenome,documento,endereco,complemento,telefone,cep, pais,estado);
+            }
         }
-
+        Pais pais = entityManager.find(Pais.class, idPais);
+        return new Cliente(email, nome, sobrenome, documento, endereco, complemento, telefone, cep, pais);
     }
 
+    //Valida se o pais tem estados cadastrados no banco de dados
     public boolean temEstado(EntityManager manager) {
+        @NotNull Pais pais = manager.find(Pais.class, idPais);
+        Assert.state(Objects.nonNull(pais),"Pais não existente no banco de dados, por gentileza, salvar o pais antes de salvar Estado. ID do pais:"+idPais);
+
         Query query = manager.createQuery("SELECT e FROM " + Estado.class.getName() + " e WHERE pais_id " + "= :value ");
         query.setParameter("value", idPais);
         List<?> list = query.getResultList();

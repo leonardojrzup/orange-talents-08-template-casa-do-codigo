@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/Autor")
+@RequestMapping("/autores")
 public class AutorController {
 
     @Autowired
