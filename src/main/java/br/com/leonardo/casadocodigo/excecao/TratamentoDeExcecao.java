@@ -26,7 +26,7 @@ public class TratamentoDeExcecao extends ResponseEntityExceptionHandler{
         List<Erro> erros = gerarListDeErros(ex.getBindingResult());
         return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);//Altera o handleExceptionInternal, pois o corpo pode ser nulo (Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
     }
-    
+
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<Object> handleRegraNegocioException(IllegalStateException ex, WebRequest request){
 
