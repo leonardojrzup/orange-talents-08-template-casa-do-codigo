@@ -92,7 +92,6 @@ public class ClienteForm {
     public boolean temEstado(EntityManager manager) {
         @NotNull Pais pais = manager.find(Pais.class, idPais);
         Assert.state(Objects.nonNull(pais),"Pais não existente no banco de dados, por gentileza, salvar o pais antes de salvar Estado. ID do pais:"+idPais);
-
         Query query = manager.createQuery("SELECT e FROM " + Estado.class.getName() + " e WHERE pais_id " + "= :value ");
         query.setParameter("value", idPais);
         List<?> list = query.getResultList();

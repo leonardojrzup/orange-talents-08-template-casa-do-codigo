@@ -12,9 +12,9 @@ import java.lang.annotation.*;
 
 @CPF
 @CNPJ
-@ConstraintComposition(CompositionType.OR) // specifies OR as boolean operator instead of AND
-@ReportAsSingleViolation // the error reports of each individual composing constraint are ignored
-@Constraint(validatedBy = { }) // we don't need a validator :-)
+@ConstraintComposition(CompositionType.OR) // especifica que é composta por OR e não AND, então pode ser uma ou outra
+@ReportAsSingleViolation //
+@Constraint(validatedBy = { }) // Classe validadora não necessaria, pois implementamos 2 anotações
 @Documented
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
