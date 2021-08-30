@@ -65,6 +65,11 @@ public class TratamentoDeExcecao extends ResponseEntityExceptionHandler{
 
             return fieldError.getDefaultMessage().concat(" é obrigatorio");
         }
+        if(fieldError.getCode().equals("NotNull")){
+
+            return fieldError.getDefaultMessage().concat(" é obrigatorio");
+        }
+
         if(fieldError.getCode().equals("Email")){
 
             return fieldError.getDefaultMessage().concat(" deve conter um formato de email válido");

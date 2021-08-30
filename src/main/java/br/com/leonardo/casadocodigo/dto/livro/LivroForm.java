@@ -20,23 +20,23 @@ public class LivroForm {
     @NotBlank(message = "Titulo")
     @isUnique(fieldName = "titulo", domainClass = Livro.class, message = "Titulo")
     private String titulo;
-    @NotNull
+    @NotNull(message = "Resumo")
     @Length(max = 500,message = "Resumo deve conter no máximo 500 Caracteres")
     private String resumo;
-    @NotNull
+    @NotNull(message = "Sumario")
     private String sumario;
     @Min(value = 20, message = "Preço deve ser no minimo 20")
     private BigDecimal preco;
     @Min(value = 100, message = "O numero de páginas deve ser no minimo 20")
     private Integer numeroPaginas;
     @isUnique(fieldName = "isbn", domainClass = Livro.class, message = "ISBN")
-    @NotNull
+    @NotNull(message = "ISBM")
     private String isbn;
     @Future
     private LocalDateTime dataPublicacao;
-    @NotNull
+    @NotNull(message = "Categoria")
     private Long idCategoria;
-    @NotNull
+    @NotNull(message = "Autor")
     private Long idAutor;
 
 
